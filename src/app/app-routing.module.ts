@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: 'contacto', component: ContactoComponent},
   {path: 'home', component: HomeComponent},
   {path: 'alumnos', component: AlumnosComponent},
-  {path: 'integrador', component: TrabajoIntegradorComponent}
+  {path: 'integrador', component: TrabajoIntegradorComponent},
+  {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
 @NgModule({

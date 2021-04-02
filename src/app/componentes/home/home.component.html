@@ -1,5 +1,16 @@
-<div class="row mt-3">
-    <div class="col-sm-6">
+<div class="centradora">
+    <ag-grid-angular
+    style="width: 650px; height: 300px;"
+    class="ag-theme-material"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [rowSelection]="rowSelection"
+    (selectionChanged)="onSelectionChanged($event)"
+    (gridReady)="onGridReady($event)"
+    >
+
+    </ag-grid-angular>
+    <!-- <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Oceba - Inst.de la Vivienda - Min. Infraestructura</h5>
@@ -20,8 +31,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-6">
+    </div> -->
+    <!-- <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Arba</h5>
@@ -75,5 +86,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

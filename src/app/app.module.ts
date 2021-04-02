@@ -9,6 +9,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { AlumnosComponent } from './componentes/alumnos/alumnos.component';
 import { TrabajoIntegradorComponent } from './componentes/trabajo-integrador/trabajo-integrador.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TrabajoIntegradorComponent } from './componentes/trabajo-integrador/tra
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
