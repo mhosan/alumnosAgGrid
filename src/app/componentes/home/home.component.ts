@@ -45,7 +45,9 @@ export class HomeComponent implements OnInit {
     //alert(seleccion);
     this.destino = seleccion;
   }
-
+  // onClickIrAlCurso(){
+    
+  // }
   onGridReady(params){
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

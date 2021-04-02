@@ -10,6 +10,10 @@ import { HomeComponent } from './componentes/home/home.component';
 import { AlumnosComponent } from './componentes/alumnos/alumnos.component';
 import { TrabajoIntegradorComponent } from './componentes/trabajo-integrador/trabajo-integrador.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { AlumnosArba1Component } from './componentes/alumnos-arba1/alumnos-arba1.component';
+import { AlumnosArba2Component } from './componentes/alumnos-arba2/alumnos-arba2.component';
+import { AlumnosIpap1Component } from './componentes/alumnos-ipap1/alumnos-ipap1.component';
+import { AlumnosIpap2Component } from './componentes/alumnos-ipap2/alumnos-ipap2.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { AgGridModule } from 'ag-grid-angular';
     FooterComponent,
     HomeComponent,
     AlumnosComponent,
-    TrabajoIntegradorComponent
+    TrabajoIntegradorComponent,
+    AlumnosArba1Component,
+    AlumnosArba2Component,
+    AlumnosIpap1Component,
+    AlumnosIpap2Component
   ],
   imports: [
     BrowserModule,
