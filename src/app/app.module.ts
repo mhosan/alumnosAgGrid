@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
@@ -32,6 +33,7 @@ import { AlumnosIpap2Component } from './componentes/alumnos-ipap2/alumnos-ipap2
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AgGridModule.withComponents([])
   ],
   providers: [],
