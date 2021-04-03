@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//import { HttpClient } from '@angular/common/http';
+import * as data from '../../../assets/arbaInicial.json';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -34,8 +36,12 @@ export class HomeComponent implements OnInit {
       { id: 4, institucion: 'Arba', curso: 'Avanzamos con todo', nivel: 'Avanzado' }
     ];
     this.rowSelection = 'single';
+    this.leerDatos();
   }
-
+  leerDatos() {
+    
+    console.log(datos); 
+  }
   onSelectionChanged(parametro) {
     // let selectedNodes = this.gridApi.getSelectedNodes();
     // let selectedData = selectedNodes.map(node => node.data);
@@ -47,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   onClickIrAlCurso() {
-    
+
     switch (this.destino) {
       case "1":
         this.router.navigate(['/alumnos1']);
