@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   public rowData;
   public rowSelection;
   public destino: string = "(seleccionar)";
+  public cartelBotonSeleccion: string = "(seleccionar)";
 
   constructor(private router: Router) { }
 
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit {
     let seleccion = selectedRows[0].id;
     //alert(seleccion);
     this.destino = seleccion.toString();
+    this.cartelBotonSeleccion = selectedRows[0].institucion +', '+ selectedRows[0].curso +', ' + selectedRows[0].nivel;
   }
 
   onClickIrAlCurso() {
