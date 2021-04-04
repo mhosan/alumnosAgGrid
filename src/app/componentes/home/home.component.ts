@@ -29,10 +29,10 @@ export class HomeComponent implements OnInit {
       { headerName: 'Nivel', field: 'nivel', sortable: true }
     ];
     this.rowData = [
-      { id: 1, institucion: 'Ipap', curso: 'Intro al giserio', nivel: 'Inicial' },
-      { id: 2, institucion: 'Arba', curso: 'Intro al giserio', nivel: 'Inicial' },
-      { id: 3, institucion: 'Ipap', curso: 'Avanzamos con todo', nivel: 'Avanzado' },
-      { id: 4, institucion: 'Arba', curso: 'Avanzamos con todo', nivel: 'Avanzado' }
+      { id: 1, institucion: 'Ipap', curso: 'Introducción a los Sistemas de Información Geográfica', nivel: 'Inicial' },
+      { id: 2, institucion: 'Arba', curso: 'Introducción a los Sistemas de Información Geográfica', nivel: 'Inicial' },
+      { id: 3, institucion: 'Ipap', curso: 'SIG Avanzado', nivel: 'Avanzado' },
+      { id: 4, institucion: 'Arba', curso: 'SIG Avanzado con aplicaciones', nivel: 'Avanzado' }
     ];
     this.rowSelection = 'single';
     
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     let seleccion = selectedRows[0].id;
     //alert(seleccion);
     this.destino = seleccion.toString();
-    this.cartelBotonSeleccion = selectedRows[0].institucion +', '+ selectedRows[0].curso +', ' + selectedRows[0].nivel;
+    this.cartelBotonSeleccion = selectedRows[0].institucion +', '+ selectedRows[0].curso;
   }
 
   onClickIrAlCurso() {

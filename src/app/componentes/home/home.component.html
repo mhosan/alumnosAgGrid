@@ -7,7 +7,32 @@
             </ag-grid-angular>&nbsp;&nbsp;
         </div>
     </div>
+
     <div class="col mt-5 centradora">
-        <button class="btn btn-secondary" (click)="onClickIrAlCurso()">Curso {{cartelBotonSeleccion}}</button>
+        <table width="100%">
+            <tr>
+                <td>
+                    <span>
+                        Ver detalle del curso: 
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="botonVerCurso" class="btn btn-secondary"
+                    (click)="onClickIrAlCurso()">{{cartelBotonSeleccion}}</button>
+                </td>
+            </tr>
+        </table>
+        <!-- <div style="display: flex; align-items:flex-start; justify-content:left;">
+            <span >Ver detalle del curso: </span>
+        </div>
+        <div style="display: flex; align-items:flex-end; justify-content:right;">
+            <button id="botonVerCurso" class="btn btn-secondary"
+            (click)="onClickIrAlCurso()">{{cartelBotonSeleccion}}</button>
+        </div>
+         -->
     </div>
+
 </div>
+
