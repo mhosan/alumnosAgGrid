@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     let seleccion = selectedRows[0].id;
     //alert(seleccion);
     this.destino = seleccion.toString();
-    this.cartelBotonSeleccion = selectedRows[0].institucion +', '+ selectedRows[0].curso;
+    this.cartelBotonSeleccion = selectedRows[0].ente +', '+ selectedRows[0].curso;
   }
 
   onClickIrAlCurso() {
