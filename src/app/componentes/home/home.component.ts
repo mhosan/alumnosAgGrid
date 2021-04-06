@@ -23,16 +23,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Id', field: 'id' },
-      { headerName: 'Institución', field: 'institucion', sortable: true },
-      { headerName: 'Curso', field: 'curso', sortable: true },
-      { headerName: 'Nivel', field: 'nivel', sortable: true }
+      { headerName: 'Id', field: 'id', width: 20, hide: true },
+      { headerName: 'Ente', field: 'ente', width: 80, sortable: true, headerClass: 'miClase' },
+      { headerName: 'Curso', field: 'curso', width: 400, sortable: true, headerClass: 'miClase'},
+      { headerName: 'Nivel', field: 'nivel', sortable: true, headerClass: 'miClase' }
     ];
     this.rowData = [
-      { id: 1, institucion: 'Ipap', curso: 'Introducción a los Sistemas de Información Geográfica', nivel: 'Inicial' },
-      { id: 2, institucion: 'Arba', curso: 'Introducción a los Sistemas de Información Geográfica', nivel: 'Inicial' },
-      { id: 3, institucion: 'Ipap', curso: 'SIG Avanzado', nivel: 'Avanzado' },
-      { id: 4, institucion: 'Arba', curso: 'SIG Avanzado con aplicaciones', nivel: 'Avanzado' }
+      { id: 1, ente: 'Ipap', curso: 'Introducción a los Sistemas de Información Geográfica', nivel: 'Inicial' },
+      { id: 2, ente: 'Arba', curso: 'Introducción a los Sistemas de Información Geográfica', nivel: 'Inicial' },
+      { id: 3, ente: 'Ipap', curso: 'SIG Avanzado', nivel: 'Avanzado' },
+      { id: 4, ente: 'Arba', curso: 'SIG Avanzado con aplicaciones', nivel: 'Avanzado' }
     ];
     this.rowSelection = 'single';
     
@@ -53,16 +53,16 @@ export class HomeComponent implements OnInit {
 
     switch (this.destino) {
       case "1":
-        this.router.navigate(['/alumnos1']);
+        this.router.navigate(['alumnos1']);
         break;
       case "2":
-        this.router.navigate(['/alumnos2']);
+        this.router.navigate(['alumnos2']);
         break;
       case "3":
-        this.router.navigate(['/alumnos3']);
+        this.router.navigate(['alumnos3']);
         break;
       case "4":
-        this.router.navigate(['/alumnos4']);
+        this.router.navigate(['alumnos4']);
         break;
 
       default:

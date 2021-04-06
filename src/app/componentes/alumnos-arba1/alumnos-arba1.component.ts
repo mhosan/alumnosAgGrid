@@ -17,9 +17,9 @@ export class AlumnosArba1Component implements OnInit {
 
   ngOnInit(): void {
     this.columnDefs = [
-      { headerName: 'Nombre', field: 'firstname', sortable: true },
-      { headerName: 'Apellido', field: 'lastname', sortable: true },
-      { headerName: 'email', field: 'email', sortable: true }
+      { headerName: 'Nombre', field: 'firstname', sortable: true, width: 200, headerClass: 'miClase'},
+      { headerName: 'Apellido', field: 'lastname', sortable: true, width: 180, headerClass: 'miClase' },
+      { headerName: 'email', field: 'email', sortable: true, width: 350, headerClass: 'miClase' }
     ];
     //this.rowData = [];
     this.rowSelection = 'single';
