@@ -1,8 +1,14 @@
 <div class="row">
     <div class="col">
         <div class="centradora">
-            <ag-grid-angular style="width: 800px; height: 300px;" class="ag-theme-material" [rowData]="rowData"
-                [columnDefs]="columnDefs" [rowSelection]="rowSelection" (selectionChanged)="onSelectionChanged($event)"
+            <ag-grid-angular 
+                theme="legacy" 
+                style="width: 800px; height: 300px;" 
+                class="ag-theme-material" 
+                [rowData]="rowData"
+                [columnDefs]="columnDefs" 
+                [rowSelection]="rowSelection" 
+                (selectionChanged)="onSelectionChanged($event)"
                 (gridReady)="onGridReady($event)">
             </ag-grid-angular>&nbsp;&nbsp;
         </div>

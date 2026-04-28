@@ -3,19 +3,20 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: false
 })
 export class HomeComponent implements OnInit {
   // columnDefs = [
   //   { headerName: 'Make', field: 'make', 
   //      sortable: true, filter: true, checkboxSelection: true, pagination: true, editable: true},
-  public gridApi;
-  public gridColumnApi;
-  public columnDefs;
-  public rowData;
-  public rowSelection;
+  public gridApi!: { getSelectedRows: () => any; };
+  public gridColumnApi: any;
+  public columnDefs!: ({ headerName: string; field: string; width: number; hide: boolean; sortable?: undefined; headerClass?: undefined; } | { headerName: string; field: string; width: number; sortable: boolean; headerClass: string; hide?: undefined; } | { headerName: string; field: string; sortable: boolean; headerClass: string; width?: undefined; hide?: undefined; })[];
+  public rowData!: { id: number; ente: string; curso: string; nivel: string; }[];
+  public rowSelection!: { mode: 'singleRow' };
   public destino: string = "(seleccionar)";
   public cartelBotonSeleccion: string = "(seleccionar)";
 
@@ -34,11 +35,11 @@ export class HomeComponent implements OnInit {
       { id: 3, ente: 'Ipap', curso: 'SIG Avanzado', nivel: 'Avanzado' },
       { id: 4, ente: 'Arba', curso: 'SIG Avanzado con aplicaciones', nivel: 'Avanzado' }
     ];
-    this.rowSelection = 'single';
+    this.rowSelection = { mode: 'singleRow' };
     
   }
   
-  onSelectionChanged(parametro) {
+  onSelectionChanged(parametro: any) {
     // let selectedNodes = this.gridApi.getSelectedNodes();
     // let selectedData = selectedNodes.map(node => node.data);
     // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
-  onGridReady(params) {
+  onGridReady(params: { api: any; columnApi: any; }) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     // this.http

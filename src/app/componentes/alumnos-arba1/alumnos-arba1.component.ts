@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../servicios/datos.service';
 
 @Component({
-  selector: 'app-alumnos-arba1',
-  templateUrl: './alumnos-arba1.component.html',
-  styleUrls: ['./alumnos-arba1.component.css']
+    selector: 'app-alumnos-arba1',
+    templateUrl: './alumnos-arba1.component.html',
+    styleUrls: ['./alumnos-arba1.component.css'],
+    standalone: false
 })
 export class AlumnosArba1Component implements OnInit {
-  public gridApi;
-  public gridColumnApi;
-  public columnDefs;
-  public rowData;
-  public rowSelection;
+  public gridApi!: { getSelectedRows: () => any; };
+  public gridColumnApi: any;
+  public columnDefs!: { headerName: string; field: string; sortable: boolean; width: number; headerClass: string; }[];
+  public rowData: any;
+  public rowSelection!: { mode: 'singleRow' }
 
   constructor(private datosService: DatosService) { }
 
@@ -22,9 +23,9 @@ export class AlumnosArba1Component implements OnInit {
       { headerName: 'email', field: 'email', sortable: true, width: 350, headerClass: 'miClase' }
     ];
     //this.rowData = [];
-    this.rowSelection = 'single';
+    this.rowSelection = { mode: 'singleRow' };  
   }
-  onSelectionChanged(parametro) {
+  onSelectionChanged(parametro: any) {
     // let selectedNodes = this.gridApi.getSelectedNodes();
     // let selectedData = selectedNodes.map(node => node.data);
     // alert(`Nodo seleccionado:\n${JSON.stringify(selectedData)}`); 
@@ -33,7 +34,7 @@ export class AlumnosArba1Component implements OnInit {
     //alert(seleccion);
     //this.destino = seleccion.toString();
   }
-  onGridReady(params) {
+  onGridReady(params: { api: any; columnApi: any; }) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     
