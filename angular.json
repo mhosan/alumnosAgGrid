@@ -17,6 +17,7 @@
               "base": "docs",
               "browser": ""
             },
+            "baseHref": "/alumnosAgGrid/",
             "index": "src/index.html",
             "polyfills": [
               "src/polyfills.ts"

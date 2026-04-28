@@ -38272,19 +38272,19 @@ var DatosService = class _DatosService {
     this.http = http;
   }
   getDatosArbaInicial() {
-    let datos = this.http.get("../assets/arbaInicial.json");
+    let datos = this.http.get("assets/arbaInicial.json");
     return datos;
   }
   getDatosArbaAvanzado() {
-    let datos = this.http.get("../assets/arbaAvanzado.json");
+    let datos = this.http.get("assets/arbaAvanzado.json");
     return datos;
   }
   getDatosIpapInicial() {
-    let datos = this.http.get("../assets/ipapInicial.json");
+    let datos = this.http.get("assets/ipapInicial.json");
     return datos;
   }
   getDatosIpapAvanzado() {
-    let datos = this.http.get("../assets/ipapAvanzado.json");
+    let datos = this.http.get("assets/ipapAvanzado.json");
     return datos;
   }
   static {
