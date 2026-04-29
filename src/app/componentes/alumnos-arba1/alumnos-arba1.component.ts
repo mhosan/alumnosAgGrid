@@ -10,20 +10,17 @@ import { DatosService } from '../../servicios/datos.service';
 export class AlumnosArba1Component implements OnInit {
   public gridApi!: { getSelectedRows: () => any; };
   public gridColumnApi: any;
-  public columnDefs!: { headerName: string; field: string; sortable: boolean; width: number; headerClass: string; }[];
+  public columnDefs!: { headerName: string; field: string; sortable: boolean; headerClass: string; }[];
   public rowData: any;
-  public rowSelection!: { mode: 'singleRow' }
+  public rowSelection!: { mode: 'singleRow' };
+  private archivoId = 'arbaInicial';
 
   constructor(private datosService: DatosService) { }
 
   ngOnInit(): void {
-    this.columnDefs = [
-      { headerName: 'Nombre', field: 'firstname', sortable: true, width: 200, headerClass: 'miClase'},
-      { headerName: 'Apellido', field: 'lastname', sortable: true, width: 180, headerClass: 'miClase' },
-      { headerName: 'email', field: 'email', sortable: true, width: 350, headerClass: 'miClase' }
-    ];
-    //this.rowData = [];
-    this.rowSelection = { mode: 'singleRow' };  
+    const config = this.datosService.getGridConfig();
+    this.columnDefs = config.columnDefs;
+    this.rowSelection = config.rowSelection;
   }
   onSelectionChanged(parametro: any) {
     // let selectedNodes = this.gridApi.getSelectedNodes();
@@ -38,7 +35,7 @@ export class AlumnosArba1Component implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     
-    this.datosService.getDatosArbaInicial()
+    this.datosService.getDatos(this.archivoId)
       .subscribe(respuestaJson => {
         this.rowData = respuestaJson[0];
       });

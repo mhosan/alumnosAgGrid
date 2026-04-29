@@ -13,17 +13,14 @@ export class AlumnosIpap1Component implements OnInit {
   public columnDefs!: { headerName: string; field: string; sortable: boolean; headerClass: string; }[];
   public rowData: any;
   public rowSelection!: { mode: 'singleRow' }
+  private archivoId = 'ipapInicial';
 
   constructor(private datosService: DatosService) { }
 
   ngOnInit(): void {
-    this.columnDefs = [
-      { headerName: 'Nombre', field: 'firstname', sortable: true, headerClass: 'miClase' },
-      { headerName: 'Apellido', field: 'lastname', sortable: true, headerClass: 'miClase' },
-      { headerName: 'email', field: 'email', sortable: true, headerClass: 'miClase' }
-    ];
-    //this.rowData = [];
-    this.rowSelection = { mode: 'singleRow' };
+    const config = this.datosService.getGridConfig();
+    this.columnDefs = config.columnDefs;
+    this.rowSelection = config.rowSelection;
   }
   onSelectionChanged(parametro: any) {
     // let selectedNodes = this.gridApi.getSelectedNodes();
@@ -38,7 +35,7 @@ export class AlumnosIpap1Component implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     
-    this.datosService.getDatosIpapInicial()
+    this.datosService.getDatos(this.archivoId)
       .subscribe(respuestaJson => {
         this.rowData = respuestaJson[0];
       });

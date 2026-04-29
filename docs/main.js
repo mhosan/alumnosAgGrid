@@ -38271,21 +38271,18 @@ var DatosService = class _DatosService {
   constructor(http) {
     this.http = http;
   }
-  getDatosArbaInicial() {
-    let datos = this.http.get("assets/arbaInicial.json");
-    return datos;
+  getDatos(archivo) {
+    return this.http.get(`assets/${archivo}.json`);
   }
-  getDatosArbaAvanzado() {
-    let datos = this.http.get("assets/arbaAvanzado.json");
-    return datos;
-  }
-  getDatosIpapInicial() {
-    let datos = this.http.get("assets/ipapInicial.json");
-    return datos;
-  }
-  getDatosIpapAvanzado() {
-    let datos = this.http.get("assets/ipapAvanzado.json");
-    return datos;
+  getGridConfig() {
+    return {
+      columnDefs: [
+        { headerName: "Nombre", field: "firstname", sortable: true, headerClass: "miClase" },
+        { headerName: "Apellido", field: "lastname", sortable: true, headerClass: "miClase" },
+        { headerName: "email", field: "email", sortable: true, headerClass: "miClase" }
+      ],
+      rowSelection: { mode: "singleRow" }
+    };
   }
   static {
     this.\u0275fac = function DatosService_Factory(__ngFactoryType__) {
@@ -92799,14 +92796,12 @@ var AgGridModule = class _AgGridModule {
 var AlumnosArba1Component = class _AlumnosArba1Component {
   constructor(datosService) {
     this.datosService = datosService;
+    this.archivoId = "arbaInicial";
   }
   ngOnInit() {
-    this.columnDefs = [
-      { headerName: "Nombre", field: "firstname", sortable: true, width: 200, headerClass: "miClase" },
-      { headerName: "Apellido", field: "lastname", sortable: true, width: 180, headerClass: "miClase" },
-      { headerName: "email", field: "email", sortable: true, width: 350, headerClass: "miClase" }
-    ];
-    this.rowSelection = { mode: "singleRow" };
+    const config2 = this.datosService.getGridConfig();
+    this.columnDefs = config2.columnDefs;
+    this.rowSelection = config2.rowSelection;
   }
   onSelectionChanged(parametro) {
     let selectedRows = this.gridApi.getSelectedRows();
@@ -92815,7 +92810,7 @@ var AlumnosArba1Component = class _AlumnosArba1Component {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.datosService.getDatosArbaInicial().subscribe((respuestaJson) => {
+    this.datosService.getDatos(this.archivoId).subscribe((respuestaJson) => {
       this.rowData = respuestaJson[0];
     });
   }
@@ -92844,13 +92839,13 @@ var AlumnosArba1Component = class _AlumnosArba1Component {
         \u0275\u0275advance(5);
         \u0275\u0275property("rowData", ctx.rowData)("columnDefs", ctx.columnDefs)("rowSelection", ctx.rowSelection);
       }
-    }, dependencies: [AgGridAngular], styles: ["\n\n  .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-arba1.component.css.map */"] });
+    }, dependencies: [AgGridAngular], encapsulation: 2 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AlumnosArba1Component, [{
     type: Component,
-    args: [{ selector: "app-alumnos-arba1", standalone: false, template: '<div class="h3 mt-2 container">\r\n  Arba, Nivel inicial\r\n  <p class="card-text" style="font-size:small;">El curso est\xE1 destinado para trabajadores/as de la Agencia de\r\n    Recaudaci\xF3n de la provincia de Buenos Aires que se desempe\xF1en en departamentos del \xE1rea\r\n    de Catastro. Su objetivo general es el de propiciar la adquisici\xF3n de herramientas y\r\n    saberes necesarios para el an\xE1lisis de informaci\xF3n\r\n    Geogr\xE1fica y herramientas de an\xE1lisis de datos consolidando el manejo de la informaci\xF3n\r\n    geoespacial y\r\n    producci\xF3n de mapas.\r\n\r\n    Modalidad: Virtual asincr\xF3nica\r\n\r\n    Fecha: Del 25 de Febrero al 23 de Marzo\r\n\r\n    \xDAnica clase "sincr\xF3nica" (sala de videoconferencia): Jueves 25/02 a las 10hs\r\n</p>\r\n</div>\r\n\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular\r\n    theme="legacy" \r\n    style="width: 70%; height: 100%;"\r\n    [rowData]="rowData" [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection" \r\n    (selectionChanged)="onSelectionChanged($event)"\r\n    (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>', styles: ["/* src/app/componentes/alumnos-arba1/alumnos-arba1.component.css */\n::ng-deep .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-arba1.component.css.map */\n"] }]
+    args: [{ selector: "app-alumnos-arba1", standalone: false, template: '<div class="h3 mt-2 container">\r\n  Arba, Nivel inicial\r\n  <p class="card-text" style="font-size:small;">El curso est\xE1 destinado para trabajadores/as de la Agencia de\r\n    Recaudaci\xF3n de la provincia de Buenos Aires que se desempe\xF1en en departamentos del \xE1rea\r\n    de Catastro. Su objetivo general es el de propiciar la adquisici\xF3n de herramientas y\r\n    saberes necesarios para el an\xE1lisis de informaci\xF3n\r\n    Geogr\xE1fica y herramientas de an\xE1lisis de datos consolidando el manejo de la informaci\xF3n\r\n    geoespacial y\r\n    producci\xF3n de mapas.\r\n\r\n    Modalidad: Virtual asincr\xF3nica\r\n\r\n    Fecha: Del 25 de Febrero al 23 de Marzo\r\n\r\n    \xDAnica clase "sincr\xF3nica" (sala de videoconferencia): Jueves 25/02 a las 10hs\r\n</p>\r\n</div>\r\n\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular\r\n    theme="legacy" \r\n    style="width: 70%; height: 100%;"\r\n    [rowData]="rowData" [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection" \r\n    (selectionChanged)="onSelectionChanged($event)"\r\n    (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>' }]
   }], () => [{ type: DatosService }], null);
 })();
 (() => {
@@ -92861,14 +92856,12 @@ var AlumnosArba1Component = class _AlumnosArba1Component {
 var AlumnosArba2Component = class _AlumnosArba2Component {
   constructor(datosService) {
     this.datosService = datosService;
+    this.archivoId = "arbaAvanzado";
   }
   ngOnInit() {
-    this.columnDefs = [
-      { headerName: "Nombre", field: "firstname", sortable: true, headerClass: "miClase" },
-      { headerName: "Apellido", field: "lastname", sortable: true, headerClass: "miClase" },
-      { headerName: "email", field: "email", sortable: true, headerClass: "miClase" }
-    ];
-    this.rowSelection = { mode: "singleRow" };
+    const config2 = this.datosService.getGridConfig();
+    this.columnDefs = config2.columnDefs;
+    this.rowSelection = config2.rowSelection;
   }
   onSelectionChanged(parametro) {
     let selectedRows = this.gridApi.getSelectedRows();
@@ -92877,7 +92870,7 @@ var AlumnosArba2Component = class _AlumnosArba2Component {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.datosService.getDatosArbaAvanzado().subscribe((respuestaJson) => {
+    this.datosService.getDatos(this.archivoId).subscribe((respuestaJson) => {
       this.rowData = respuestaJson[0];
     });
   }
@@ -92906,13 +92899,13 @@ var AlumnosArba2Component = class _AlumnosArba2Component {
         \u0275\u0275advance(5);
         \u0275\u0275property("rowData", ctx.rowData)("columnDefs", ctx.columnDefs)("rowSelection", ctx.rowSelection);
       }
-    }, dependencies: [AgGridAngular], styles: ["\n\n  .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-arba2.component.css.map */"] });
+    }, dependencies: [AgGridAngular], encapsulation: 2 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AlumnosArba2Component, [{
     type: Component,
-    args: [{ selector: "app-alumnos-arba2", standalone: false, template: '<div class="h3 mt-2 container">\r\n    Arba, Nivel avanzado\r\n    <p class="card-text" style="font-size:small;">\r\n      El curso est\xE1 destinado para trabajadores/as de la Agencia de Recaudaci\xF3n de la\r\n      provincia de\r\n      Buenos Aires que se desempe\xF1en en departamentos del \xE1rea de Catastro. Su objetivo\r\n      general es\r\n      Ofrecer a los/as trabajadores/as de ARBA las herramientas y saberes necesarios para la\r\n      utilizaci\xF3n del sistema en sus \xE1reas consolidando el uso de herramientas de informaci\xF3n\r\n      georreferenciada, comprendiendo los geoprocesamientos generales, de manera tal que\r\n      optimice\r\n      la calidad de la informaci\xF3n resultante por medio del an\xE1lisis de los datos, su relaci\xF3n\r\n      espacial con el territorio y vinculaci\xF3n con datos provenientes de distintas fuentes de\r\n      informaci\xF3n.\r\n\r\n\r\n      Modalidad: Virtual asincr\xF3nica\r\n\r\n      Fecha: Del 30 de Marzo al 30 de Abril\r\n\r\n      \xDAnica clase "sincr\xF3nica" (sala de videoconferencia): Martes 30/03 a las 10hs\r\n</p>\r\n</div>\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular \r\n    theme="legacy" \r\n    style="width: 70%; height: 100%;" \r\n    [rowData]="rowData" \r\n    [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection"\r\n    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>\r\n\r\n', styles: ["/* src/app/componentes/alumnos-arba2/alumnos-arba2.component.css */\n::ng-deep .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-arba2.component.css.map */\n"] }]
+    args: [{ selector: "app-alumnos-arba2", standalone: false, template: '<div class="h3 mt-2 container">\r\n    Arba, Nivel avanzado\r\n    <p class="card-text" style="font-size:small;">\r\n      El curso est\xE1 destinado para trabajadores/as de la Agencia de Recaudaci\xF3n de la\r\n      provincia de\r\n      Buenos Aires que se desempe\xF1en en departamentos del \xE1rea de Catastro. Su objetivo\r\n      general es\r\n      Ofrecer a los/as trabajadores/as de ARBA las herramientas y saberes necesarios para la\r\n      utilizaci\xF3n del sistema en sus \xE1reas consolidando el uso de herramientas de informaci\xF3n\r\n      georreferenciada, comprendiendo los geoprocesamientos generales, de manera tal que\r\n      optimice\r\n      la calidad de la informaci\xF3n resultante por medio del an\xE1lisis de los datos, su relaci\xF3n\r\n      espacial con el territorio y vinculaci\xF3n con datos provenientes de distintas fuentes de\r\n      informaci\xF3n.\r\n\r\n\r\n      Modalidad: Virtual asincr\xF3nica\r\n\r\n      Fecha: Del 30 de Marzo al 30 de Abril\r\n\r\n      \xDAnica clase "sincr\xF3nica" (sala de videoconferencia): Martes 30/03 a las 10hs\r\n</p>\r\n</div>\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular \r\n    theme="legacy" \r\n    style="width: 70%; height: 100%;" \r\n    [rowData]="rowData" \r\n    [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection"\r\n    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>\r\n\r\n' }]
   }], () => [{ type: DatosService }], null);
 })();
 (() => {
@@ -92923,14 +92916,12 @@ var AlumnosArba2Component = class _AlumnosArba2Component {
 var AlumnosIpap1Component = class _AlumnosIpap1Component {
   constructor(datosService) {
     this.datosService = datosService;
+    this.archivoId = "ipapInicial";
   }
   ngOnInit() {
-    this.columnDefs = [
-      { headerName: "Nombre", field: "firstname", sortable: true, headerClass: "miClase" },
-      { headerName: "Apellido", field: "lastname", sortable: true, headerClass: "miClase" },
-      { headerName: "email", field: "email", sortable: true, headerClass: "miClase" }
-    ];
-    this.rowSelection = { mode: "singleRow" };
+    const config2 = this.datosService.getGridConfig();
+    this.columnDefs = config2.columnDefs;
+    this.rowSelection = config2.rowSelection;
   }
   onSelectionChanged(parametro) {
     let selectedRows = this.gridApi.getSelectedRows();
@@ -92939,7 +92930,7 @@ var AlumnosIpap1Component = class _AlumnosIpap1Component {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.datosService.getDatosIpapInicial().subscribe((respuestaJson) => {
+    this.datosService.getDatos(this.archivoId).subscribe((respuestaJson) => {
       this.rowData = respuestaJson[0];
     });
   }
@@ -92968,13 +92959,13 @@ var AlumnosIpap1Component = class _AlumnosIpap1Component {
         \u0275\u0275advance(5);
         \u0275\u0275property("rowData", ctx.rowData)("columnDefs", ctx.columnDefs)("rowSelection", ctx.rowSelection);
       }
-    }, dependencies: [AgGridAngular], styles: ["\n\n  .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-ipap1.component.css.map */"] });
+    }, dependencies: [AgGridAngular], encapsulation: 2 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AlumnosIpap1Component, [{
     type: Component,
-    args: [{ selector: "app-alumnos-ipap1", standalone: false, template: '<div class="h3 mt-2 container">\r\n  Ipap, Nivel inicial\r\n  <p class="card-text" style="font-size:small;">\r\n    Disponible desde 23 de febrero de 2021\r\n    Desde el Instituto Provincial de la Administraci\xF3n P\xFAblica (IPAP) les damos la bienvenida al curso: Introducci\xF3n a\r\n    los\r\n    Sistemas de Informaci\xF3n Geogr\xE1fica el mismo forma parte del programa de capacitaciones que desde el IPAP\r\n    planificamos\r\n    con el compromiso de hacer efectivo el derecho a la capacitaci\xF3n de todas/os las/os trabajadoras/es, bas\xE1ndonos en\r\n    el\r\n    logro de la equidad para facilitar el acceso a los conocimientos en igualdad de oportunidades. En este sentido, en\r\n    tiempos de aislamiento social obligatorio por COVID- 19, el IPAP redobla sus esfuerzos, atendiendo las necesidades\r\n    que\r\n    devienen de los procesos de ense\xF1anza y aprendizaje virtual en este contexto social. Dentro del aula virtual van a\r\n    encontrar el programa con los contenidos del curso y un cronograma que les ser\xE1 de gran ayuda durante todo el\r\n    trayecto\r\n    formativo. Las v\xEDas de comunicaci\xF3n dentro del aula virtual van a ser los foros donde encontraran a los/las docentes\r\n    y\r\n    tutores a disposici\xF3n para todas las dudas, consultas e informaci\xF3n espec\xEDfica que requieran. Bienvenidos/as!\r\n  </p>\r\n</div>\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular \r\n    theme="legacy" \r\n    style="width: 70%; \r\n    height: 100%;" \r\n    [rowData]="rowData" \r\n    [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection"\r\n    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>', styles: ["/* src/app/componentes/alumnos-ipap1/alumnos-ipap1.component.css */\n::ng-deep .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-ipap1.component.css.map */\n"] }]
+    args: [{ selector: "app-alumnos-ipap1", standalone: false, template: '<div class="h3 mt-2 container">\r\n  Ipap, Nivel inicial\r\n  <p class="card-text" style="font-size:small;">\r\n    Disponible desde 23 de febrero de 2021\r\n    Desde el Instituto Provincial de la Administraci\xF3n P\xFAblica (IPAP) les damos la bienvenida al curso: Introducci\xF3n a\r\n    los\r\n    Sistemas de Informaci\xF3n Geogr\xE1fica el mismo forma parte del programa de capacitaciones que desde el IPAP\r\n    planificamos\r\n    con el compromiso de hacer efectivo el derecho a la capacitaci\xF3n de todas/os las/os trabajadoras/es, bas\xE1ndonos en\r\n    el\r\n    logro de la equidad para facilitar el acceso a los conocimientos en igualdad de oportunidades. En este sentido, en\r\n    tiempos de aislamiento social obligatorio por COVID- 19, el IPAP redobla sus esfuerzos, atendiendo las necesidades\r\n    que\r\n    devienen de los procesos de ense\xF1anza y aprendizaje virtual en este contexto social. Dentro del aula virtual van a\r\n    encontrar el programa con los contenidos del curso y un cronograma que les ser\xE1 de gran ayuda durante todo el\r\n    trayecto\r\n    formativo. Las v\xEDas de comunicaci\xF3n dentro del aula virtual van a ser los foros donde encontraran a los/las docentes\r\n    y\r\n    tutores a disposici\xF3n para todas las dudas, consultas e informaci\xF3n espec\xEDfica que requieran. Bienvenidos/as!\r\n  </p>\r\n</div>\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular \r\n    theme="legacy" \r\n    style="width: 70%; \r\n    height: 100%;" \r\n    [rowData]="rowData" \r\n    [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection"\r\n    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>' }]
   }], () => [{ type: DatosService }], null);
 })();
 (() => {
@@ -92985,14 +92976,12 @@ var AlumnosIpap1Component = class _AlumnosIpap1Component {
 var AlumnosIpap2Component = class _AlumnosIpap2Component {
   constructor(datosService) {
     this.datosService = datosService;
+    this.archivoId = "ipapAvanzado";
   }
   ngOnInit() {
-    this.columnDefs = [
-      { headerName: "Nombre", field: "firstname", sortable: true, headerClass: "miClase" },
-      { headerName: "Apellido", field: "lastname", sortable: true, headerClass: "miClase" },
-      { headerName: "email", field: "email", sortable: true, headerClass: "miClase" }
-    ];
-    this.rowSelection = { mode: "singleRow" };
+    const config2 = this.datosService.getGridConfig();
+    this.columnDefs = config2.columnDefs;
+    this.rowSelection = config2.rowSelection;
   }
   onSelectionChanged(parametro) {
     let selectedRows = this.gridApi.getSelectedRows();
@@ -93001,7 +92990,7 @@ var AlumnosIpap2Component = class _AlumnosIpap2Component {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.datosService.getDatosIpapAvanzado().subscribe((respuestaJson) => {
+    this.datosService.getDatos(this.archivoId).subscribe((respuestaJson) => {
       this.rowData = respuestaJson[0];
     });
   }
@@ -93030,13 +93019,13 @@ var AlumnosIpap2Component = class _AlumnosIpap2Component {
         \u0275\u0275advance(5);
         \u0275\u0275property("rowData", ctx.rowData)("columnDefs", ctx.columnDefs)("rowSelection", ctx.rowSelection);
       }
-    }, dependencies: [AgGridAngular], styles: ["\n\n  .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-ipap2.component.css.map */"] });
+    }, dependencies: [AgGridAngular], encapsulation: 2 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AlumnosIpap2Component, [{
     type: Component,
-    args: [{ selector: "app-alumnos-ipap2", standalone: false, template: '<div class="h3 mt-2 container">\r\n  Ipap, Nivel avanzado\r\n  <p class="card-text" style="font-size:small;">\r\n  Desde el Instituto Provincial de la Administraci\xF3n P\xFAblica (IPAP) les damos la bienvenida al curso: Aula SIG Avanzado\r\n  el mismo forma parte del programa de capacitaciones que desde el IPAP planificamos con el compromiso de hacer efectivo\r\n  el derecho a la capacitaci\xF3n de todas/os las/os trabajadoras/es, bas\xE1ndonos en el logro de la equidad para facilitar\r\n  el acceso a los conocimientos en igualdad de oportunidades. En este sentido, en tiempos de aislamiento social\r\n  obligatorio por COVID- 19, el IPAP redobla sus esfuerzos, atendiendo las necesidades que devienen de los procesos de\r\n  ense\xF1anza y aprendizaje virtual en este contexto social. Dentro del aula virtual van a encontrar el programa con los\r\n  contenidos del curso y un cronograma que les ser\xE1 de gran ayuda durante todo el trayecto formativo. Las v\xEDas de\r\n  comunicaci\xF3n dentro del aula virtual van a ser los foros donde encontraran a los/las docentes y tutores a disposici\xF3n\r\n  para todas las dudas, consultas e informaci\xF3n espec\xEDfica que requieran. Bienvenidos/as!\r\n  </p>\r\n</div>\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular \r\n    theme="legacy" \r\n    style="width: 70%; height: 100%;" \r\n    [rowData]="rowData" \r\n    [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection"\r\n    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>', styles: ["/* src/app/componentes/alumnos-ipap2/alumnos-ipap2.component.css */\n::ng-deep .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=alumnos-ipap2.component.css.map */\n"] }]
+    args: [{ selector: "app-alumnos-ipap2", standalone: false, template: '<div class="h3 mt-2 container">\r\n  Ipap, Nivel avanzado\r\n  <p class="card-text" style="font-size:small;">\r\n  Desde el Instituto Provincial de la Administraci\xF3n P\xFAblica (IPAP) les damos la bienvenida al curso: Aula SIG Avanzado\r\n  el mismo forma parte del programa de capacitaciones que desde el IPAP planificamos con el compromiso de hacer efectivo\r\n  el derecho a la capacitaci\xF3n de todas/os las/os trabajadoras/es, bas\xE1ndonos en el logro de la equidad para facilitar\r\n  el acceso a los conocimientos en igualdad de oportunidades. En este sentido, en tiempos de aislamiento social\r\n  obligatorio por COVID- 19, el IPAP redobla sus esfuerzos, atendiendo las necesidades que devienen de los procesos de\r\n  ense\xF1anza y aprendizaje virtual en este contexto social. Dentro del aula virtual van a encontrar el programa con los\r\n  contenidos del curso y un cronograma que les ser\xE1 de gran ayuda durante todo el trayecto formativo. Las v\xEDas de\r\n  comunicaci\xF3n dentro del aula virtual van a ser los foros donde encontraran a los/las docentes y tutores a disposici\xF3n\r\n  para todas las dudas, consultas e informaci\xF3n espec\xEDfica que requieran. Bienvenidos/as!\r\n  </p>\r\n</div>\r\n<div class="centradora ag-theme-material" style="width: 100%; height: 60vh;">\r\n  <ag-grid-angular \r\n    theme="legacy" \r\n    style="width: 70%; height: 100%;" \r\n    [rowData]="rowData" \r\n    [columnDefs]="columnDefs"\r\n    [rowSelection]="rowSelection"\r\n    (selectionChanged)="onSelectionChanged($event)" (gridReady)="onGridReady($event)">\r\n  </ag-grid-angular>\r\n</div>' }]
   }], () => [{ type: DatosService }], null);
 })();
 (() => {
@@ -93230,13 +93219,13 @@ var HomeComponent = class _HomeComponent {
         \u0275\u0275advance(11);
         \u0275\u0275textInterpolate(ctx.cartelBotonSeleccion);
       }
-    }, dependencies: [AgGridAngular], styles: ["\n\n  .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=home.component.css.map */"] });
+    }, dependencies: [AgGridAngular], encapsulation: 2 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HomeComponent, [{
     type: Component,
-    args: [{ selector: "app-home", standalone: false, template: '<div class="row">\r\n    <div class="col">\r\n        <div class="centradora">\r\n            <ag-grid-angular \r\n                theme="legacy" \r\n                style="width: 800px; height: 300px;" \r\n                class="ag-theme-material" \r\n                [rowData]="rowData"\r\n                [columnDefs]="columnDefs" \r\n                [rowSelection]="rowSelection" \r\n                (selectionChanged)="onSelectionChanged($event)"\r\n                (gridReady)="onGridReady($event)">\r\n            </ag-grid-angular>&nbsp;&nbsp;\r\n        </div>\r\n    </div>\r\n\r\n    <div class="col mt-5 centradora">\r\n        <table width="100%">\r\n            <tr>\r\n                <td>\r\n                    <span>\r\n                        Ver detalle del curso: \r\n                    </span>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <td>\r\n                    <button id="botonVerCurso" class="btn btn-secondary"\r\n                    (click)="onClickIrAlCurso()">{{cartelBotonSeleccion}}</button>\r\n                </td>\r\n            </tr>\r\n        </table>\r\n        <!-- <div style="display: flex; align-items:flex-start; justify-content:left;">\r\n            <span >Ver detalle del curso: </span>\r\n        </div>\r\n        <div style="display: flex; align-items:flex-end; justify-content:right;">\r\n            <button id="botonVerCurso" class="btn btn-secondary"\r\n            (click)="onClickIrAlCurso()">{{cartelBotonSeleccion}}</button>\r\n        </div>\r\n         -->\r\n    </div>\r\n\r\n</div>\r\n\r\n', styles: ["/* src/app/componentes/home/home.component.css */\n::ng-deep .miClase {\n  font-family:\n    Arial,\n    Helvetica,\n    sans-serif;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=home.component.css.map */\n"] }]
+    args: [{ selector: "app-home", standalone: false, template: '<div class="row">\r\n    <div class="col">\r\n        <div class="centradora">\r\n            <ag-grid-angular \r\n                theme="legacy" \r\n                style="width: 800px; height: 300px;" \r\n                class="ag-theme-material" \r\n                [rowData]="rowData"\r\n                [columnDefs]="columnDefs" \r\n                [rowSelection]="rowSelection" \r\n                (selectionChanged)="onSelectionChanged($event)"\r\n                (gridReady)="onGridReady($event)">\r\n            </ag-grid-angular>&nbsp;&nbsp;\r\n        </div>\r\n    </div>\r\n\r\n    <div class="col mt-5 centradora">\r\n        <table width="100%">\r\n            <tr>\r\n                <td>\r\n                    <span>\r\n                        Ver detalle del curso: \r\n                    </span>\r\n                </td>\r\n            </tr>\r\n            <tr>\r\n                <td>\r\n                    <button id="botonVerCurso" class="btn btn-secondary"\r\n                    (click)="onClickIrAlCurso()">{{cartelBotonSeleccion}}</button>\r\n                </td>\r\n            </tr>\r\n        </table>\r\n        <!-- <div style="display: flex; align-items:flex-start; justify-content:left;">\r\n            <span >Ver detalle del curso: </span>\r\n        </div>\r\n        <div style="display: flex; align-items:flex-end; justify-content:right;">\r\n            <button id="botonVerCurso" class="btn btn-secondary"\r\n            (click)="onClickIrAlCurso()">{{cartelBotonSeleccion}}</button>\r\n        </div>\r\n         -->\r\n    </div>\r\n\r\n</div>\r\n\r\n' }]
   }], () => [{ type: Router }], null);
 })();
 (() => {

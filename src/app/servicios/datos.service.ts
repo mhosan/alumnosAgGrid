@@ -9,20 +9,18 @@ export class DatosService {
 
   constructor(private http: HttpClient) { }
 
-  getDatosArbaInicial(): Observable<any> {
-    let datos = this.http.get<any>("assets/arbaInicial.json");
-    return datos;
+  getDatos(archivo: string): Observable<any> {
+    return this.http.get<any>(`assets/${archivo}.json`);
   }
-  getDatosArbaAvanzado(): Observable<any> {
-    let datos = this.http.get<any>("assets/arbaAvanzado.json");
-    return datos;
-  }
-  getDatosIpapInicial(): Observable<any> {
-    let datos = this.http.get<any>("assets/ipapInicial.json");
-    return datos;
-  }
-  getDatosIpapAvanzado(): Observable<any> {
-    let datos = this.http.get<any>("assets/ipapAvanzado.json");
-    return datos;
+
+  getGridConfig(): { columnDefs: any[]; rowSelection: any } {
+    return {
+      columnDefs: [
+        { headerName: 'Nombre', field: 'firstname', sortable: true, headerClass: 'miClase' },
+        { headerName: 'Apellido', field: 'lastname', sortable: true, headerClass: 'miClase' },
+        { headerName: 'email', field: 'email', sortable: true, headerClass: 'miClase' }
+      ],
+      rowSelection: { mode: 'singleRow' }
+    };
   }
 }

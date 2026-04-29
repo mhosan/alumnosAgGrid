@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/componentes/home/home.component.css"],
-  "sourcesContent": ["::ng-deep .miClase {\r\n    font-family:Arial, Helvetica, sans-serif;\r\n    font-weight:bolder;\r\n    /* font-size:medium; */\r\n}"],
-  "mappings": ";AAAA,UAAU,CAAC;AACP;AAAA,IAAY,KAAK;AAAA,IAAE,SAAS;AAAA,IAAE;AAC9B,eAAY;AAEhB;",
-  "names": []
-}
