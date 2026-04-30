@@ -14,7 +14,26 @@ export class HomeComponent implements OnInit {
   //      sortable: true, filter: true, checkboxSelection: true, pagination: true, editable: true},
   public gridApi!: { getSelectedRows: () => any; };
   public gridColumnApi: any;
-  public columnDefs!: ({ headerName: string; field: string; width: number; hide: boolean; sortable?: undefined; headerClass?: undefined; } | { headerName: string; field: string; width: number; sortable: boolean; headerClass: string; hide?: undefined; } | { headerName: string; field: string; sortable: boolean; headerClass: string; width?: undefined; hide?: undefined; })[];
+  public columnDefs!: (
+    { headerName: string;
+      field: string; 
+      width: number;
+      hide: boolean; 
+      sortable?: true; 
+      headerClass?: undefined;
+     } | 
+    { headerName: string; 
+      field: string; 
+      width: number; 
+      sortable: boolean; 
+      headerClass: string; 
+      hide?: undefined; } |
+    { headerName: string; 
+      field: string; 
+      sortable: boolean; 
+      headerClass: string; 
+      width?: undefined; 
+      hide?: undefined; })[];
   public rowData!: { id: number; ente: string; curso: string; nivel: string; }[];
   public rowSelection!: { mode: 'singleRow' };
   public destino: string = "(seleccionar)";
